@@ -1,0 +1,26 @@
+# Flutter / Dart
+**/build/
+**/.dart_tool/
+**/.packages
+**/pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+
+# Android
+**/android/.gradle/
+**/android/local.properties
+
+# iOS
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+
+# Generated files
+*.class
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
