@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/profile.dart';
 import '../widgets/info_tile.dart';
+import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key, required this.onToggleTheme});
@@ -13,6 +14,18 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   Profile _profile = Profile.contoh;
+
+  Future<void> _bukaEdit() async {
+    final Profile? hasil = await Navigator.push<Profile>(
+      context,
+      MaterialPageRoute(builder: (_) => EditProfilePage(profile: _profile)),
+    );
+    if (!mounted || hasil == null) return;
+    setState(() => _profile = hasil);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Profil berhasil diperbarui')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +77,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _bukaEdit,
+        tooltip: 'Edit profil',
+        child: const Icon(Icons.edit),
       ),
     );
   }
