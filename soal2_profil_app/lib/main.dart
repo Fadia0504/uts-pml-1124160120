@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/about_page.dart';
 import 'screens/login_page.dart';
 import 'screens/profile_page.dart';
 
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const LoginPage(),
         '/profile': (context) => ProfilePage(onToggleTheme: _toggleTheme),
+        '/about': (context) => const AboutPage(),
       },
     );
   }
