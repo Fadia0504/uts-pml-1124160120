@@ -29,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
     if (!mounted) return;
     setState(() => _loading = false);
 
-    // Akun demo: password 123456
     if (_password.text == '123456') {
       Navigator.pushReplacementNamed(context, '/profile');
     } else {
@@ -109,8 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                           : const Text('Login'),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text('Demo: password 123456', style: textTheme.bodySmall),
                 ],
               ),
             ),

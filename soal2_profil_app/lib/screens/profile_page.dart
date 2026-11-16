@@ -30,11 +30,67 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Mahasiswa'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: 'Ganti tema',
+            onPressed: widget.onToggleTheme,
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(_profile.nama, style: textTheme.titleLarge),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('Tentang Saya'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/about');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Edit Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                _bukaEdit();
+              },
+            ),
+            SwitchListTile(
+              secondary: const Icon(Icons.dark_mode),
+              title: const Text('Mode gelap'),
+              value: isDark,
+              onChanged: (_) => widget.onToggleTheme(),
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Keluar'),
+              onTap: () => Navigator.pushReplacementNamed(context, '/'),
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -82,6 +138,16 @@ class _ProfilePageState extends State<ProfilePage> {
         onPressed: _bukaEdit,
         tooltip: 'Edit profil',
         child: const Icon(Icons.edit),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (i) {
+          if (i == 1) Navigator.pushNamed(context, '/about');
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Tentang'),
+        ],
       ),
     );
   }
