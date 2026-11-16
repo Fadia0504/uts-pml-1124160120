@@ -27,4 +27,4 @@ Akun demo: email bebas (format valid), password `123456`
 Unduh di halaman Releases (v1.0.0).
 
 ## Video presentasi
--
+https://youtu.be/Bg1kYEYbY1E
